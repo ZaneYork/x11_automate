@@ -127,8 +127,8 @@ def get_pixel_color(i_x, i_y):
     o_x_root = Xlib.display.Display().screen().root
     o_x_image = o_x_root.get_image(i_x, i_y, 1, 1, Xlib.X.ZPixmap, 0xffffffff)
     o_pil_image_rgb = PIL.Image.frombytes(
-        "RGB", (i_x + 1, i_y + 1), o_x_image.data, "raw", "BGRX")
-    return o_pil_image_rgb.get_pixel((i_x, i_y))
+        "RGB", (1, 1), o_x_image.data, "raw", "BGRX")
+    return o_pil_image_rgb.getpixel((0, 0))
 
 
 def get_pixel_color_of_image(o_x_image, i_x, i_y):
@@ -138,7 +138,7 @@ def get_pixel_color_of_image(o_x_image, i_x, i_y):
         return (-1000, -1000, -1000)
     o_pil_image_rgb = PIL.Image.frombytes(
         "RGB", (i_x + 1, i_y + 1), o_x_image.data, "raw", "BGRX")
-    return o_pil_image_rgb.get_pixel((i_x, i_y))
+    return o_pil_image_rgb.getpixel((i_x, i_y))
 
 
 def check_multi_color_of_image(image, point_list, color_list, offset, delta):
